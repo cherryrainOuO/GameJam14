@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Video;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class CutSceneDialog : MonoBehaviour
 {
@@ -19,16 +20,16 @@ public class CutSceneDialog : MonoBehaviour
 
     [SerializeField] private Image skipImage;
 
-
-    private void Start()
+    public void StartDialog()
     {
-
         StartCoroutine(UpdateDialog());
+
+        //! 만약 이 기능이 싫으시다면 그냥 밑에 줄 없애주세요~
         StartCoroutine(CoroutineForSkip());
     }
 
     private IEnumerator UpdateDialog()
-    { // 외부 스크립트에서 IEnumerator로 접근할 것
+    {
 
         yield return YieldFunctions.WaitForSeconds(1f);
         SetNextDialog();
@@ -54,12 +55,15 @@ public class CutSceneDialog : MonoBehaviour
                 {
                     /* 다음 다이얼로그 재생 */
 
+
+                    //! 만약 이 기능이 싫으시다면 그냥 밑에 줄 없애주세요~
                     yield return StartCoroutine(ReverseEraser());
 
                     SetNextDialog();
                 }
                 else
                 {
+                    //! 만약 이 기능이 싫으시다면 그냥 밑에 줄 없애주세요~
                     yield return StartCoroutine(ReverseEraser());
 
                     dialog.gameObject.SetActive(false);

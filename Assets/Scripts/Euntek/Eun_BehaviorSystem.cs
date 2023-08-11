@@ -12,10 +12,10 @@ public class Eun_BehaviorSystem : MonoBehaviour
     /// <param name="_card"></param>
     public void UseCard(Kyunho_Card _card)
     {
-        //TODO 행동 취소 가능할지 여부?
+        //TODO 행동 취소 가능할지 여부? --> 이건 최종 결정버튼에 할당하도록 하자.
 
         Eun_PlayerStat.Instance.CardToStat(_card);
-        cardSystem.RemoveCard(_card);
+        cardSystem.RemoveCardFromCardList(_card);
     }
 
     /// <summary>
@@ -24,6 +24,6 @@ public class Eun_BehaviorSystem : MonoBehaviour
     /// <param name="_card"></param>
     public void RemoveCard(Kyunho_Card _card)
     {
-        cardSystem.RemoveCard(_card);
+        cardSystem.RemoveCardFromCardList(_card);
     }
 }
