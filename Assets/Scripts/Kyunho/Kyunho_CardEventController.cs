@@ -11,7 +11,6 @@ public class Kyunho_CardEventController : MonoBehaviour
 
     private void Awake()
     {
-        events = new Queue<Kyunho_CardEvent>();
     }
 
     private void AddEvent(Kyunho_CardEvent cardEvent)
