@@ -15,11 +15,11 @@ public class Eun_PlayerStat : Singleton<Eun_PlayerStat>
 
     public void CardToStat(Kyunho_Card _card)
     {
-
+        //Todo 카드가 스탯에 적용
     }
 
-    public void SituationFeedBack(Action action)
+    public void SituationFeedBackToStat()
     {
-        action();
+        //Todo 상황에 대한 피드백이 스탯에 적용
     }
 }
