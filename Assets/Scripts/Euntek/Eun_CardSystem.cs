@@ -14,20 +14,35 @@ public class Eun_CardSystem : MonoBehaviour
         Init();
 
         Shuffle();
+
     }
 
     private void Init()
     {
-        cards = GetComponentsInChildren<Kyunho_Card>(true).ToList();
+        cards = Resources.LoadAll<Kyunho_Card>("").ToList();
         Debug.Log(cards.Count);
+    }
+
+
+    private string ToString(Kyunho_Card _card)
+    {
+        string str = _card.Name + "\n";
+        str += _card.Cost + "\n";
+        str += _card.Morality + "\n";
+
+        str += "==============\n";
+        return str;
     }
 
     private void Shuffle()
     {
+        //Todo 모든 인덱스 객체 안보이게 하기
         //foreach (var i in cards) i.gameObject.SetActive(false);
 
         //? 성향에 따라 보여주는 카드 다름
         int rand = CheckMorality();
+
+        //Todo rand 인덱스의 객체를 보이게하기
         //cards[rand].gameObject.SetActive(true);
     }
 
@@ -67,7 +82,7 @@ public class Eun_CardSystem : MonoBehaviour
         cards.Remove(_Card);
 
         if (cards.Count == 0)
-            cards = GetComponentsInChildren<Kyunho_Card>(true).ToList(); //! 카드가 휘발된 카드인지 Linq로 선별하기
+            Init(); //! 카드가 휘발된 카드인지 Linq로 선별하기
 
         Shuffle();
     }
