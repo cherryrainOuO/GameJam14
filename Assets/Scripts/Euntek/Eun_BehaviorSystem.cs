@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Eun_BehaviorSystem : MonoBehaviour
 {
-    [SerializeField] private Eun_CardSystem cardSystem;
 
+    /*
     /// <summary>
     /// 카드 사용시에 사용할 내용입니다. 
     /// </summary>
@@ -15,7 +15,6 @@ public class Eun_BehaviorSystem : MonoBehaviour
         //TODO 행동 취소 가능할지 여부? --> 이건 최종 결정버튼에 할당하도록 하자.
 
         Eun_PlayerStat.Instance.CardToStat(_card);
-        cardSystem.RemoveCardFromCardList(_card);
     }
 
     /// <summary>
@@ -26,4 +25,5 @@ public class Eun_BehaviorSystem : MonoBehaviour
     {
         cardSystem.RemoveCardFromCardList(_card);
     }
+    */
 }
