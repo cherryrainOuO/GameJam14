@@ -4,11 +4,6 @@ using UnityEngine;
 using System.Linq;
 
 
-public class Kyunho_Card : MonoBehaviour
-{
-    public bool isMora;
-}
-
 public class Eun_CardSystem : MonoBehaviour
 {
     private List<Kyunho_Card> cards;
@@ -17,7 +12,6 @@ public class Eun_CardSystem : MonoBehaviour
     private void Start()
     {
         Init();
-
 
         Shuffle();
     }
@@ -30,11 +24,11 @@ public class Eun_CardSystem : MonoBehaviour
 
     private void Shuffle()
     {
-        foreach (var i in cards) i.gameObject.SetActive(false);
+        //foreach (var i in cards) i.gameObject.SetActive(false);
 
         //? 성향에 따라 보여주는 카드 다름
         int rand = CheckMorality();
-        cards[rand].gameObject.SetActive(true);
+        //cards[rand].gameObject.SetActive(true);
     }
 
     private int CheckMorality()
@@ -46,9 +40,9 @@ public class Eun_CardSystem : MonoBehaviour
 
         while (true)
         {
-            if (Eun_PlayerStat.Instance.morality >= 0 && cards[rand].isMora)
+            if (Eun_PlayerStat.Instance.morality >= 0 && cards[rand].Type == Kyunho_CardType.Beneficence)
                 break;
-            else if (Eun_PlayerStat.Instance.morality < 0 && !cards[rand].isMora)
+            else if (Eun_PlayerStat.Instance.morality < 0 && cards[rand].Type == Kyunho_CardType.Malefeasance)
                 break;
             else
             {
@@ -67,10 +61,10 @@ public class Eun_CardSystem : MonoBehaviour
     /// 카드를 버렸을 시
     /// </summary>
     /// <param name="_index"></param>
-    public void RemoveCard(int _index)
+    public void RemoveCard(Kyunho_Card _Card)
     {
         //Todo 기존 카드는 어떻게 할 것 인지?
-        cards.RemoveAt(_index);
+        cards.Remove(_Card);
 
         if (cards.Count == 0)
             cards = GetComponentsInChildren<Kyunho_Card>(true).ToList(); //! 카드가 휘발된 카드인지 Linq로 선별하기
