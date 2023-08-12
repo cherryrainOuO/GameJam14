@@ -129,7 +129,7 @@ public class Eun_CardSystem : MonoBehaviour
     private int CheckMorality()
     {
         //? 뽑을 확률은? 
-        int morality = Mathf.Abs(Eun_PlayerStat.Instance.morality / percent);
+        int moralityPercent = Mathf.Abs(Eun_PlayerStat.Instance.morality / percent);
 
         int rand = Random.Range(0, cards.Count);
 
@@ -141,7 +141,7 @@ public class Eun_CardSystem : MonoBehaviour
                 break; //? 성악설 0 일때도 악
             else
             {
-                if (Random.Range(0, morality) == 0)
+                if (Random.Range(0, moralityPercent) == 0)
                     break;
 
                 rand = Random.Range(0, cards.Count);
@@ -174,6 +174,15 @@ public class Eun_CardSystem : MonoBehaviour
         // if(습득 카드 있음) playerDecks.Add(습득 카드)
         // else
         Shuffle();
+    }
+
+    public void AddRewardCard()
+    {
+        Eun_PlayerStat.Instance.currentBehaviorCount++;
+
+        int rand = CheckMorality();
+        cards.RemoveAt(rand);
+        playerDecks.Add(cards[rand]);
     }
 
 }
