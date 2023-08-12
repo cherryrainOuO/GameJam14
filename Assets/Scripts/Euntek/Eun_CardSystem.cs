@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-
+using TMPro;
 
 public class Eun_CardSystem : MonoBehaviour
 {
@@ -10,10 +10,11 @@ public class Eun_CardSystem : MonoBehaviour
     private List<Kyunho_Card> cards;
 
     //? 현재 플레이어가 선택할 수 있는 카드예요.
-    private List<Kyunho_Card> playerDecks = new List<Kyunho_Card>();
+    public List<Kyunho_Card> playerDecks = new List<Kyunho_Card>();
+
+    //[SerializeField] private TextMeshProUGUI[] text;
     private Kyunho_Card duplicationCard = null;
     private int duplicationCount = 1;
-
 
     [SerializeField, Range(1, 10)] private int percent = 10;
 
@@ -22,7 +23,6 @@ public class Eun_CardSystem : MonoBehaviour
         Init();
 
         FirstShuffle();
-
     }
 
     private void Init()
@@ -85,6 +85,8 @@ public class Eun_CardSystem : MonoBehaviour
             {
                 cards.Remove(duplicationCard);
                 playerDecks.Add(duplicationCard);
+
+                //Todo
 
                 duplicationCard = null;
             }
@@ -180,9 +182,12 @@ public class Eun_CardSystem : MonoBehaviour
     {
         Eun_PlayerStat.Instance.currentBehaviorCount++;
 
-        int rand = CheckMorality();
-        cards.RemoveAt(rand);
-        playerDecks.Add(cards[rand]);
+        if (cards.Count == 0)
+        {
+            Init();
+        }
+
+        Shuffle();
     }
 
 }
