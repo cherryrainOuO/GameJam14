@@ -83,8 +83,8 @@ public class Eun_CardSystem : MonoBehaviour
 
             if (result) //! 중복 제거에 실패함.
             {
-                cards.Remove(duplicationCard);
                 playerDecks.Add(duplicationCard);
+                cards.Remove(duplicationCard);
 
                 //Todo
 
@@ -92,16 +92,16 @@ public class Eun_CardSystem : MonoBehaviour
             }
             else //! 이번 카드는 중복 제거에 성공
             {
-                cards.RemoveAt(rand);
                 playerDecks.Add(cards[rand]);
+                cards.RemoveAt(rand);
             }
 
             duplicationCount++;
         }
         else
         {
-            cards.RemoveAt(rand);
             playerDecks.Add(cards[rand]);
+            cards.RemoveAt(rand);
         }
 
 
@@ -165,6 +165,7 @@ public class Eun_CardSystem : MonoBehaviour
 
         if (cards.Count == 0)
         {
+            Debug.Log("카드리스트 비어서 다시 Init~");
             duplicationCard = _card;
             duplicationCount = 1;
             Init(); //! 근데 이거 playerDeck 에 있는건 다시 빼야하지 않나??
@@ -184,6 +185,7 @@ public class Eun_CardSystem : MonoBehaviour
 
         if (cards.Count == 0)
         {
+            Debug.Log("카드리스트 비어서 다시 Init~");
             Init();
         }
 

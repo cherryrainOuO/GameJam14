@@ -35,13 +35,14 @@ public class Eun_TurnSystem : MonoBehaviour
 
         if (_isCardUse) //? 이벤트 실행
         {
-            //Todo cardEventController.AddEvent(_currentCard.UsingEvent);
-
+            cardEventController.AddEvents(_currentCard.UsingEvent);
+            cardEventController.Execute();
             //! 만약 보상으로 카드를 얻는다면 Eun_PlayerStat.Instance.currentBehaviorCount를 해주세요;
         }
         else
         {
-            //Todo cardEventController.AddEvent(_currentCard.RemovalEvent);
+            cardEventController.AddEvents(_currentCard.RemovalEvent);
+            cardEventController.Execute();
         }
     }
 
