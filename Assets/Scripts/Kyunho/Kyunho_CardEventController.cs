@@ -11,17 +11,24 @@ public class Kyunho_CardEventController : MonoBehaviour
 
     private void Awake()
     {
+        events = new Queue<Kyunho_CardEvent>();
     }
 
-    private void AddEvent(Kyunho_CardEvent cardEvent)
+    public void AddEvents(Kyunho_CardEvent[] cardEvents)
     {
-        events.Enqueue(cardEvent);
+        foreach (var cardEvent in cardEvents)
+        {
+            events.Enqueue(cardEvent);
+        }
     }
 
-    private void Execute()
+    public void Execute()
     {
-        var cardEvent = events.Dequeue();
-
-        //Need implement dialogue with cardEvent.Description;
+        while (events.TryDequeue(out var cardEvent))
+        {
+            Debug.Log(cardEvent.Description);
+            var resolver = new Kyunho_RewardResolver(Eun_PlayerStat.Instance);
+            resolver.Resolve(cardEvent.Reward);
+        }
     }
 }
